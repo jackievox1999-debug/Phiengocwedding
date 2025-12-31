@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "web-tool-jackievo",
+  "private_key_id": "f106962d73f63e1a656643179329396c4002d216",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCz4GU6TRQQVxG9\n+u0N2Tc0kDorbiXKyffBo286sLen8tjrdwjT2zEUlzxix0h3OYLvEsMD7VoXYmSW\nzibHufjuFbVFdgiKIMaWaXbNEuvB0VqHljpxHUJtQCPek0N70XUnRdtJ7t2DSO4O\nZr+fHuSSwoms1kryQdOb+58sgOq+J7hFY+Juv4tJH+PL/q3ZS89k3cvcj06No3xA\nktRnHl1WZycfSjS5ERT+j66d/iDLZ33JmEA77mHd3SFb3JY3LTHGF/yv6CVRlF+E\nPfzq8Y3YhebmEi1+Pxf7+NRcCy3EQMKwV1q8yYYiGfh/1T4xopKWsoez1S4XIkfV\nC3vVCBz7AgMBAAECggEAVvyEV45gzooctV/8dX7++Hdq+ge5VPkYzFbJ+nrtRdXl\n2vDknvdYI9oDRM2UmLuCOzU6g9Krh7V4aYlmLZ4c6J4s3Ft5Q7sX7jMwVXn58u/Y\nNMuMlZkNv6GN9xwGPYGMgyKAKp/OFagWH3bG4h9hcCuNwrya386/k6Y6Up5BZxUk\ntiivJfyW3Iwee+LnYUbULmXGwRjYn0kIWRlUJ+fiH4UtdH81dKixHzSeAcQHwgJ4\nJ4K4XuWVFmCq5n1kSAkIlGkDp6B7L8oDYd/UWfcTQXursdlT5z3lIeVyejTzVS7E\nYcXqxd/8dYPxUzHIFs1RwvKbnYjJVSOQROYoc66DkQKBgQDW43BjWkaCC7o6k9M1\nED7Xe5b9c+/ZcZ/by52X8xBvxSYXhJ79Q5/TnS3QzZwSQ2EcMr8UcMWoJ0Jph2Kx\ntgYb3/X+01DWfLCdCd1yOJx4E+QJG/kXQQdO7X+ESNNYZ9rNpJHpeqsQLA5eopQ5\nQ5PDTtTBLJbIBYzfmyeJw8eDQwKBgQDWSi8ZBgQl3YiYjjVIqH8l7UiKrg9r/zh/\nN4f+ex0jP0XysoxxF74GkangJ0OmGu2v3k+Ynd5z+PiVmrg+nyRRbS8FJoXzbr12\ngIW6jrL3y8ww5QMT5F37FxiQzYWju1L8mBU+XyrnzzB3zvbK+i3KV91mPlEfl9k7\nBU+ArUT36QKBgQCnuL1vznZZ6m1gayDeud9SsNQY3vTF8zmihDps7vpVQruIf6rY\nYn/M21F3OAQo/Q4+xB0AB0U/CeV8GH+f1ULPXu7SBn2B67Ct4ZVGIYl+74d81KiG\nzeq2YAi3Z2AOEIFnIJwCcAw0gy50DtFCIMykFFNas0K8vBhILwGdNYHzoQKBgEyq\nd9U1ENDXRGKIJkobdnoEPbrX8U6LHhRtsqr6Mv+ESKs+8/4WJ3dEMAmxIoPQCI+u\nMr4AZTEKty0XEKne1+iF7peiI7RnP0OhUbbgDOmYsTIhDQvV3UXTCofr788XWuZi\nJt+MvtX2i3mhwyv1e+JzsxM8YluyQRbbnIkF9LHZAoGBAKnnEAyrZGg6L6gSp0WY\nTnzKL+TO7uxwFiOT6GIrNOpMk6pRF5A+rxKIJi9XTqeyc06QiUefr4FAYb2ERmXs\nok9LIFoGEH1c3Ni/Yc3PTNzZ6joSlHqVl/fVU1WBJvVf7iGXPm3kqqSVXXUbGY5g\n3YHUG6uue39w6/gCTbGtS43/\n-----END PRIVATE KEY-----\n",
+  "client_email": "jackievo1999@web-tool-jackievo.iam.gserviceaccount.com",
+  "client_id": "117525832876149255961",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/jackievo1999%40web-tool-jackievo.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

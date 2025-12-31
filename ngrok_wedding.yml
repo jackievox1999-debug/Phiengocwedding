@@ -1,0 +1,8 @@
+﻿version: 3
+agent:
+  authtoken: 34GXYlF73AdGLIPXxZ07C2RJVe3_3oWNcZScK6SKAmWzWi5YL
+
+tunnels:
+  wedding:
+    proto: http
+    addr: 127.0.0.1:5001
