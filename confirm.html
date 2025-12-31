@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác nhận thành công</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: #fbf3f5;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            animation: fadeIn .35s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .icon {
+            font-size: 58px;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.45;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 13px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            margin-top: 12px;
+            cursor: pointer;
+            transition: 0.25s;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            opacity: 0.85;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #444;
+        }
+        .btn-secondary:hover {
+            background: #e2e2e2;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #777;
+            font-size: 14px;
+            margin-top: 10px;
+            text-decoration: underline;
+        }
+        .btn-outline:hover {
+            color: #444;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        {% if attend_status == "Có tham dự" %}
+            <div class="icon">🥰</div>
+            <h2>Đã xác nhận tham dự</h2>
+            <p>
+                Cảm ơn {{ guest_name }} đã xác nhận tham dự  
+                {{ "Nghi lễ Hôn phối tại Nhà Thờ" if is_church else "Tiệc Báo Hỷ tại Nhà Hàng" }}.
+                <br>
+                Chúng tôi rất mong được đón tiếp bạn!
+            </p>
+        {% else %}
+            <div class="icon">😢</div>
+            <h2>Rất tiếc bạn không thể tham dự</h2>
+            <p>
+                Chúng tôi hiểu rằng bạn có lịch trình riêng.  
+                Cảm ơn {{ guest_name }} đã phản hồi.  
+                Chúc bạn thật nhiều niềm vui và hạnh phúc!
+            </p>
+        {% endif %}
+
+        {% if is_church %}
+            <a href="/rsvp/restaurant">
+                <button class="btn btn-primary">Tiếp tục xác nhận Tiệc cưới Nhà Hàng</button>
+            </a>
+        {% else %}
+            <a href="/rsvp/church">
+                <button class="btn btn-primary">Xác nhận Nghi lễ Nhà Thờ</button>
+            </a>
+        {% endif %}
+
+        <a href="/">
+            <button class="btn btn-secondary">Đóng & quay về trang chính</button>
+        </a>
+
+        <a href="/guest-list">
+            <button class="btn btn-outline">
+                Xem danh sách khách mời đã xác nhận
+            </button>
+        </a>
+
+    </div>
+
+</body>
+</html>

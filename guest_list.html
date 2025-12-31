@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Danh sách khách mời đã xác nhận</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      font-family: system-ui, sans-serif;
+      background:#fdf5f7;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+    }
+    .wrapper {
+      max-width:960px;
+      width:100%;
+      background:#fff;
+      border-radius:24px;
+      padding:24px 20px 26px;
+      box-shadow:0 12px 30px rgba(0,0,0,0.12);
+      position:relative;
+    }
+    h1 {
+      text-align:center;
+      font-size:22px;
+      margin-bottom:6px;
+    }
+    .subtitle {
+      text-align:center;
+      font-size:13px;
+      color:#666;
+      margin-bottom:18px;
+    }
+    .subtitle span.badge {
+      display:inline-block;
+      padding:3px 10px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#ff9a9e,#fecf73);
+      color:#fff;
+      font-size:12px;
+      margin-left:4px;
+    }
+
+    .lists {
+      display:grid;
+      gap:14px;
+    }
+    @media (min-width:768px){
+      .lists { grid-template-columns:1fr 1fr; gap:18px; }
+    }
+
+    .card {
+      border-radius:18px;
+      border:1px solid #f1d7de;
+      padding:12px 10px 12px;
+      background:#fff9fb;
+    }
+    .card h2 {
+      font-size:15px;
+      margin-bottom:6px;
+    }
+    table {
+      width:100%;
+      border-collapse:collapse;
+      font-size:13px;
+    }
+    th, td {
+      padding:4px 4px;
+      border-bottom:1px solid #f0e2e6;
+      text-align:left;
+      white-space:nowrap;
+    }
+    th { font-weight:600; color:#555; }
+
+    .status {
+      padding:2px 8px;
+      border-radius:999px;
+      font-size:11px;
+      display:inline-block;
+    }
+    .status-yes {
+      background:rgba(93,186,120,0.12);
+      color:#1f8140;
+    }
+    .status-no {
+      background:rgba(255,158,158,0.12);
+      color:#c0392b;
+    }
+
+    .empty {
+      font-size:12px;
+      color:#999;
+      padding-top:4px;
+    }
+
+    .message {
+      margin-bottom:8px;
+      font-size:13px;
+      text-align:center;
+    }
+    .message-success { color:#1f8140; }
+    .message-error { color:#c0392b; }
+
+    .back-link {
+      margin-top:14px;
+      text-align:center;
+      font-size:13px;
+    }
+    .back-link a {
+      color:#888;
+      text-decoration:none;
+    }
+    .back-link a:hover { text-decoration:underline; }
+
+    /* ================= BUBBLE SỬA XÁC NHẬN ================= */
+
+    .update-bubble {
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      max-width:360px;
+      width:calc(100% - 32px);
+      z-index:99;
+      border-radius:18px;
+      background:#fff8fa;
+      border:1px solid #f3d1de;
+      box-shadow:0 10px 26px rgba(0,0,0,0.18);
+      overflow:hidden;
+      backdrop-filter: blur(6px);
+    }
+    @media (min-width:768px){
+      .update-bubble {
+        right:24px;
+        bottom:24px;
+        width:340px;
+      }
+    }
+
+    .update-header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 12px;
+      background:linear-gradient(135deg,#ff9a9e,#fecf73);
+      color:#fff;
+      cursor:pointer;
+    }
+    .update-header-title {
+      font-size:14px;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .update-toggle-btn {
+      border:none;
+      background:rgba(255,255,255,0.25);
+      color:#fff;
+      border-radius:999px;
+      width:24px;
+      height:24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      font-size:13px;
+    }
+
+    .update-body {
+      padding:10px 12px 12px;
+      font-size:12px;
+    }
+    .update-note {
+      font-size:11px;
+      color:#777;
+      margin-bottom:8px;
+    }
+    form.update-form {
+      display:grid;
+      gap:8px;
+    }
+    .row-inline {
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      font-size:12px;
+    }
+    label {
+      font-size:12px;
+      color:#555;
+    }
+    input[type="tel"],
+    select,
+    textarea {
+      width:100%;
+      padding:7px 9px;
+      border-radius:8px;
+      border:1px solid #ddd;
+      font-size:13px;
+    }
+    textarea { min-height:52px; resize:vertical; }
+
+    .btn-submit {
+      margin-top:4px;
+      padding:9px;
+      border-radius:999px;
+      border:none;
+      background:linear-gradient(135deg,#ff9a9e,#fecf73);
+      color:#fff;
+      font-size:14px;
+      font-weight:600;
+      cursor:pointer;
+      width:100%;
+    }
+
+    /* Trạng thái THU GỌN bubble */
+    .update-bubble.collapsed .update-body {
+      display:none;
+    }
+    .update-bubble.collapsed .update-toggle-icon {
+      transform:rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Danh sách khách mời đã xác nhận</h1>
+    <div class="subtitle">
+      Bạn có thể cập nhật lại trạng thái tham gia/không tham gia tại trang này
+      trước ngày {{ limit_date }}.
+      <span class="badge">Cập nhật RSVP</span>
+    </div>
+
+    {% if message %}
+      <div class="message message-{{ message_type or 'success' }}">
+        {{ message }}
+      </div>
+    {% endif %}
+
+    <div class="lists">
+      <div class="card">
+        <h2>✅ Xác nhận tham dự Nghi lễ Nhà Thờ</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tên</th>
+              <th>Số điện thoại</th>
+              <th>Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if church_list %}
+              {% for g in church_list %}
+              <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ g.name }}</td>
+                <td>{{ g.phone_mask }}</td>
+                <td>
+                  {% if g.attend == "Có tham dự" %}
+                    <span class="status status-yes">Có tham dự</span>
+                  {% elif g.attend %}
+                    <span class="status status-no">{{ g.attend }}</span>
+                  {% else %}
+                    <span class="status">—</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            {% else %}
+              <tr><td colspan="4" class="empty">Chưa có khách nào xác nhận.</td></tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>🎉 Xác nhận tham gia Tiệc cưới Nhà Hàng</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tên</th>
+              <th>Số điện thoại</th>
+              <th>Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if restaurant_list %}
+              {% for g in restaurant_list %}
+              <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ g.name }}</td>
+                <td>{{ g.phone_mask }}</td>
+                <td>
+                  {% if g.attend == "Có tham dự" %}
+                    <span class="status status-yes">Có tham dự</span>
+                  {% elif g.attend %}
+                    <span class="status status-no">{{ g.attend }}</span>
+                  {% else %}
+                    <span class="status">—</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            {% else %}
+              <tr><td colspan="4" class="empty">Chưa có khách nào xác nhận.</td></tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="back-link">
+      <a href="{{ url_for('index') }}">← Quay lại trang chính</a>
+    </div>
+  </div>
+
+  <!-- BUBBLE SỬA XÁC NHẬN LUÔN NỔI TRÊN MÀN HÌNH -->
+  <div class="update-bubble" id="updateBubble">
+    <div class="update-header" id="updateHeader">
+      <div class="update-header-title">
+        ✏️ <span>Sửa xác nhận bằng số điện thoại</span>
+      </div>
+      <button type="button" class="update-toggle-btn" id="updateToggle">
+        <span class="update-toggle-icon">▾</span>
+      </button>
+    </div>
+    <div class="update-body">
+      <div class="update-note">
+        Nhập đúng số điện thoại đã dùng để xác nhận trước đó. Hệ thống sẽ cập nhật
+        trạng thái và ghi chú cho đúng khách tương ứng.
+      </div>
+
+      <form class="update-form" method="post" action="{{ url_for('guest_list') }}">
+        <div class="row-inline">
+          <label>
+            <input type="radio" name="target" value="church" checked />
+            Nghi lễ Nhà Thờ
+          </label>
+          <label>
+            <input type="radio" name="target" value="restaurant" />
+            Tiệc cưới Nhà Hàng
+          </label>
+        </div>
+
+        <div>
+          <label>Số điện thoại</label>
+          <input type="tel" name="phone" placeholder="Số điện thoại đã dùng để xác nhận" required />
+        </div>
+
+        <div>
+          <label>Trạng thái tham gia</label>
+          <select name="attend">
+            <option value="Có tham dự">Có tham dự</option>
+            <option value="Cáo bận">Cáo bận</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Ghi chú (tuỳ chọn)</label>
+          <textarea name="note" placeholder="Ví dụ: đổi số lượng, lý do không tham dự..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Sửa xác nhận</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const bubble = document.getElementById('updateBubble');
+      const header = document.getElementById('updateHeader');
+      const toggleBtn = document.getElementById('updateToggle');
+
+      function toggleBubble() {
+        bubble.classList.toggle('collapsed');
+      }
+
+      header.addEventListener('click', toggleBubble);
+      toggleBtn.addEventListener('click', function (e) {
+        e.stopPropagation();  // tránh click header 2 lần
+        toggleBubble();
+      });
+    })();
+  </script>
+</body>
+</html>

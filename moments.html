@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Những khoảnh khắc đáng nhớ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      font-family:system-ui, sans-serif;
+      background:#fdf5f7;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+    }
+    .card {
+      max-width:980px;
+      width:100%;
+      background:#fff;
+      border-radius:24px;
+      padding:24px 20px 26px;
+      box-shadow:0 12px 30px rgba(0,0,0,0.12);
+    }
+    h1 {
+      font-size:22px;
+      text-align:center;
+      margin-bottom:6px;
+    }
+    .subtitle {
+      text-align:center;
+      font-size:13px;
+      color:#777;
+      margin-bottom:16px;
+    }
+    .grid {
+      display:grid;
+      gap:14px;
+    }
+    @media (min-width:768px){
+      .grid { grid-template-columns:1.5fr 1fr; gap:18px; }
+    }
+    .box {
+      border-radius:18px;
+      background:#fff8fa;
+      border:1px solid #f3d1de;
+      padding:14px 12px;
+      font-size:13px;
+      color:#555;
+    }
+    .box h2 {
+      font-size:15px;
+      margin-bottom:6px;
+      color:#c6527a;
+    }
+    .thumbs {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(110px,1fr));
+      gap:8px;
+      margin-top:6px;
+    }
+    .thumb {
+      position:relative;
+      padding-top:70%;
+      border-radius:12px;
+      overflow:hidden;
+      background:#eee center/cover no-repeat;
+    }
+    .note {
+      margin-top:10px;
+      font-size:12px;
+      color:#888;
+    }
+    .back {
+      margin-top:16px;
+      text-align:center;
+      font-size:13px;
+    }
+    .back a {
+      color:#888;
+      text-decoration:none;
+    }
+    .back a:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Những khoảnh khắc đáng nhớ</h1>
+    <div class="subtitle">
+      Album hình cưới, hình trong Thánh lễ và Tiệc Báo Hỷ.
+      Sau này Quý khách có thể tải về những bức hình của mình và xem lại video tại đây.
+    </div>
+
+    <div class="grid">
+      <div class="box">
+        <h2>📷 Album hình ảnh</h2>
+        <p>
+          Khu vực này sẽ hiển thị các album / bộ hình theo từng phần:
+          <br/>– Hình cưới (pre-wedding)<br/>
+          – Khoảnh khắc trong Nhà Thờ<br/>
+          – Khoảnh khắc trong Tiệc cưới
+        </p>
+        <div class="thumbs">
+          <!-- Sau này bạn thay các div .thumb này bằng hình thật -->
+          <div class="thumb" style="background-image:url('{{ url_for('static', filename='images/moment-1.jpg') }}');"></div>
+          <div class="thumb" style="background-image:url('{{ url_for('static', filename='images/moment-2.jpg') }}');"></div>
+          <div class="thumb" style="background-image:url('{{ url_for('static', filename='images/moment-3.jpg') }}');"></div>
+          <div class="thumb" style="background-image:url('{{ url_for('static', filename='images/moment-4.jpg') }}');"></div>
+        </div>
+        <div class="note">
+          Tip: bạn chỉ cần upload hình vào thư mục <code>static/images</code> và đổi link ở đây
+          để hiển thị đúng album.
+        </div>
+      </div>
+
+      <div class="box">
+        <h2>🎬 Video / YouTube</h2>
+        <p>Ở đây bạn có thể nhúng trực tiếp video highlight cưới hoặc link YouTube.</p>
+        <div style="margin-top:8px; position:relative; padding-top:56.25%; border-radius:12px; overflow:hidden; background:#000;">
+          <!-- Khi có video, bỏ comment dưới và thay VIDEO_ID -->
+          <!--
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+                  style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+                  allowfullscreen></iframe>
+          -->
+        </div>
+        <div class="note">
+          Khi có video, chỉ cần bỏ comment trong thẻ <code>&lt;iframe&gt;</code> và dán link YouTube vào.
+        </div>
+      </div>
+    </div>
+
+    <div class="back">
+      <a href="{{ url_for('index') }}">← Quay lại trang Thiệp Báo Hỷ · RSVP</a>
+    </div>
+  </div>
+</body>
+</html>
